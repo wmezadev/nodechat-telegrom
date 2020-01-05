@@ -9,7 +9,7 @@ function addMessage(chat, user, message, file) {
         }
         let fileUrl = '';
         if (file) {
-            fileUrl = 'http://localhost:3000/app/files/' + file.filename;
+            fileUrl = `${process.env.APP_URL}:${process.env.APP_PORT}/app/files/` + file.filename;
         }
         const fullMessage = {
             chat: chat,

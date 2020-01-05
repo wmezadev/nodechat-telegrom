@@ -12,5 +12,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 router(app);
 
 app.use('/app', express.static('public'));
-app.listen(3000);
-console.log('La aplicación está escuchando en http://localhost:3000');
+app.listen(process.env.APP_PORT);
+console.log(`La aplicación está escuchando en ${process.env.APP_URL}:${process.env.APP_PORT}`);
