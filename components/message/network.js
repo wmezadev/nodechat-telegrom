@@ -4,7 +4,7 @@ const response = require('../../network/response');
 const controller = require('./controller');
 
 const upload = multer({
-    dest: 'uploads/'
+    dest: 'public/files/'
 });
 
 const router = express.Router();
