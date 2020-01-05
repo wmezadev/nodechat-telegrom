@@ -34,8 +34,20 @@ function updateMessage (id, message) {
     });
 }
 
+function deleteMessage (id) {
+    return new Promise (async (resolve, reject) => {
+        if(!id){
+            reject('Invalid Id');
+            return false;
+        }
+        const result = await store.deleteMessage(id);
+        resolve(result);
+    });
+}
+
 module.exports = {
     addMessage,
     getMessages,
-    updateMessage
+    updateMessage,
+    deleteMessage
 };

@@ -26,13 +26,17 @@ async function updateMessage(id, message) {
     const foundMessage = await Model.findOne({
         _id: id
     });
-    foundMessage.message = message;
-    const newMessage = await foundMessage.save();
-    return newMessage;
+}
+
+function deleteMessage(id) {
+    return Model.deleteOne({
+        _id: id
+    });
 }
 
 module.exports =  {
     add: addMessage,
     list: getMessages,
-    updateMessage: updateMessage
+    updateMessage: updateMessage,
+    deleteMessage: deleteMessage
 }
