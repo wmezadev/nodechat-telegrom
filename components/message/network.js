@@ -2,9 +2,20 @@ const express = require('express');
 const multer = require('multer');
 const response = require('../../network/response');
 const controller = require('./controller');
+const path = require('path');
+
+// Se sube a carpeta public/files/ y se agrega con la extensión original del archivo
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/files/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
+    }
+})
 
 const upload = multer({
-    dest: 'public/files/'
+    storage: storage
 });
 
 const router = express.Router();
@@ -20,7 +31,8 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', upload.single('file'), function(req, res) {
-    controller.addMessage(req.body.chat, req.body.user, req.body.message)
+
+    controller.addMessage(req.body.chat, req.body.user, req.body.message, req.file)
     .then(fullMessage => {
         response.success(req, res, fullMessage, 201);
     })
