@@ -1,12 +1,5 @@
-const db = require('mongoose');
-const Model = require('./model');
 
-db.Promise = global.Promise;
-db.connect(process.env.DB_URI , {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-console.log('[db] conectada con éxito');
+const Model = require('./model');
 
 function addMessage(message) {
     const myMessage = new Model(message);
