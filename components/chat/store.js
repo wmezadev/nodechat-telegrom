@@ -9,7 +9,7 @@ async function listChats(userId) {
     return new Promise((resolve, reject) => {
         let filter = {};
         if(userId) {
-            filter = { user: userId };
+            filter = { users: userId };
         } 
         Model.find(filter)
             .populate('users')

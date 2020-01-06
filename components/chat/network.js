@@ -4,7 +4,8 @@ const controller = require('./controller');
 
 const router = express.Router();
 
-router.get('/', function(req, res) {
+router.get('/:userId', function(req, res) {
+    console.log(req.params.userId)
     controller.listChats(req.params.userId)
         .then((users) => {
             response.success(req, res, users, 200);
